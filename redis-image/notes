@@ -1,0 +1,24 @@
+# docker build w a filename
+# -t docker_id / repo/project name : verion
+-t bongardino/redis:latest .
+
+# if you dont specify version when you run the image, it will run latest
+docker run bongardino/redis
+
+# run a container in interactive mode, w image and shell
+docker run -it alpine sh
+
+# docker commit
+# run a command in a running container
+
+docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
+438eef4f3ccc        alpine              "sh"                About a minute ago   Up About a minute                       elated_goodall
+
+docker commit -c 'CMD ["redis-server"]' 438eef4f3ccc
+
+# results in a sha output of the new container it creates
+sha256:c4392908d0232f7065c34e333442871529d8047e8b6bb7b270639fb204049657
+
+# which can then be run
+docker run c4392908d0232f7065c34e333442871529d8047e8b6bb7b270639fb204049657
